@@ -9,10 +9,19 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  TextInput,
   View
 } from 'react-native';
 
 export default class ReactNativeTutorial extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      text: ''
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -21,9 +30,17 @@ export default class ReactNativeTutorial extends Component {
           <View style={{width: 50, height: 50, backgroundColor: 'skyblue'}} />
           <View style={{width: 50, height: 50, backgroundColor: 'steelblue'}} />
         </View>
-        <Text style={styles.welcome}>
-          Hello Shawn!
-        </Text>
+        <TextInput
+          style={{height: 40, width: 100, flex: 1}}
+          placehoder={'Enter your name!'}
+          onChangeText={text => this.setState({text})}
+          autofocus
+        />
+        {!this.state.text ? (null) : (
+          <Text style={styles.welcome}>
+            Hello {this.state.text}!
+          </Text>
+        )}
       </View>
     );
   }
